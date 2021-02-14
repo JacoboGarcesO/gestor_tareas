@@ -1,77 +1,14 @@
 import React from 'react';
 import Fondo from '../images/fondo_1.jpg';
+import '../styles/styles.css';
+import ContentHome from '../components/ContentHome';
 
-export default function Home(){
+const Home=()=>{
     return(
-        <section style={{backgroundImage: `url(${Fondo})`}}>
-            Home
-            <br/>
-            g
-            <br/>
-            <br/>
-            <br/>
-            rf
-            <br/>
-            <br/>
-            <b>
-                rb
-            </b>
-            rrr
-            <br/>
-            <br/>
-            rrr
-            Home
-            <br/>
-            g
-            <br/>
-            <br/>
-            <br/>
-            rf
-            <br/>
-            <br/>
-            <b>
-                rb
-            </b>
-            rrr
-            <br/>
-            <br/>
-            rrr
-            Home
-            <br/>
-            g
-            <br/>
-            <br/>
-            <br/>
-            rf
-            <br/>
-            <br/>
-            <b>
-                rb
-            </b>
-            rrr
-            <br/>
-            <br/>
-            rrr
-            Home
-            <br/>
-            g
-            <br/>
-            <br/>
-            <br/>
-            rf
-            <br/>
-            <br/>
-            <b>
-                rb
-            </b>
-            rrr
-            <br/>
-            <br/>
-            rrr
-            Home
-            <br/>
-        
+        <div className="HOME_PAGE fondo" style={{backgroundImage: `url(${Fondo})`}}>
+          <ContentHome/>
+        </div>
+    );
+};
 
-        </section>
-    )
-}
+export default Home;

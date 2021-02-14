@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
+.letter_tittle{
+    font-family: 'Reggae One', cursive;
+    font-size: 4em;
+}
+.letter{
+    font-family: 'Reggae One', cursive;
+    font-size: 1.5em;
+}
+.content_home_tittle{
+    padding-top: 10em;
+}
+.button_content_home{
+    padding: 2em;
+}
+.btn{
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.199), 0 6px 20px 0 rgba(221, 209, 209, 0.26);
+    width: 200px;
+}
+.content_home_1{
+    padding-bottom: 237px;
+}
+.fondo{
+    background-attachment: fixed;
+}
+.content_footer{
+    padding: 13px;
+}
+
