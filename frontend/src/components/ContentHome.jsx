@@ -14,7 +14,7 @@ const ContentHome=()=>{
               </Link>
           </div>
           <div className="button_content_home text-center content_home_1">
-              <Link to='/singup'>
+              <Link to='/signup'>
                 <button type="button" className="btn btn-secondary btn-lg letter">Sign up</button>
               </Link>
           </div>
