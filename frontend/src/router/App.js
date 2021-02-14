@@ -12,7 +12,7 @@ const App=()=>{
         <Route exact path="/" component={Home}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/signup" component={SignUp}/>
-        <Route exact path="/beginning" component={Beginning}/>
+        <Route exact path="/tasks" component={Beginning}/>
       </Switch>
     </BrowserRouter>
   );

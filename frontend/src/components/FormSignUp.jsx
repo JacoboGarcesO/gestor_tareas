@@ -4,11 +4,16 @@ import {Card} from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import axios from '../axios/axios';
 import swal from 'sweetalert2';
+import sha1 from "sha1";
 
 const FormSignUp=()=> {
     const { register, handleSubmit } = useForm();
     const onSubmit = data =>{    
-        axios.post('/send-email', data).then(
+        axios.post('/send-email', {
+            "nombre":data['nombre'],
+            "correo":data['correo'],
+            "contrasena":data['contrasena']
+        }).then(
             (res)=>{
                 if(res.state===0){
                     swal.fire({
@@ -19,7 +24,12 @@ const FormSignUp=()=> {
                         confirmButtonColor: "#f96332",
                     });
                 }else{
-                    axios.post('/signup', data).then(
+                    axios.post('/signup', {
+                        "nombre":data['nombre'],
+                        "apellidos":data['apellidos'],
+                        "correo":data['correo'],
+                        "contrasena":sha1(data['contrasena'])
+                    }).then(
                         (res)=>{
                             if(res.data['message']=="Usuario registrado"){
                                 swal.fire({

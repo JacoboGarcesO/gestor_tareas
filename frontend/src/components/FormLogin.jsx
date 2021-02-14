@@ -6,11 +6,15 @@ import { useForm } from "react-hook-form";
 import axios from '../axios/axios';
 import swal from 'sweetalert2';
 import {saveToLocal} from '../functions/LocalStorage';
+import sha1 from "sha1";
 
 const FormLogin=()=> {
     const { register, handleSubmit } = useForm();
     const onSubmit = data =>{
-        axios.post('/login', data).then(
+        axios.post('/login', {
+            "correo":data['correo'],
+            "contrasena":sha1(data['contrasena'])
+        }).then(
             (res)=>{
                 if(res.data[0]==undefined){
                     swal.fire({
@@ -23,7 +27,7 @@ const FormLogin=()=> {
                 }else{
                     const id = res.data[0]["_id"];
                     saveToLocal("id", id);
-                    window.location.href="/beginning";
+                    window.location.href="/tasks";
                 } 
             }
         )
