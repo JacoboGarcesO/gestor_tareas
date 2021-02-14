@@ -6,7 +6,7 @@ import Form from '../components/FormSignUp';
 
 export default function SignUp(){
     return(
-        <div className="LOGIN_PAGE fondo" style={{backgroundImage: `url(${Fondo})`}}>
+        <div className="SIGNUP_PAGE fondo" style={{backgroundImage: `url(${Fondo})`}}>
             <Header/>
             <br/>
             <br/>

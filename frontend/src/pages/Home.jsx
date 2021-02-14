@@ -6,7 +6,7 @@ import ContentHome from '../components/ContentHome';
 const Home=()=>{
     return(
         <div className="HOME_PAGE fondo" style={{backgroundImage: `url(${Fondo})`}}>
-          <ContentHome/>
+            <ContentHome/>
         </div>
     );
 };

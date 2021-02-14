@@ -23,7 +23,7 @@ const FormLogin=()=> {
                 }else{
                     const id = res.data[0]["_id"];
                     saveToLocal("id", id);
-                    //window.location.href
+                    window.location.href="/beginning";
                 } 
             }
         )

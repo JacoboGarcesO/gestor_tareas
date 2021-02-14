@@ -7,20 +7,34 @@ import swal from 'sweetalert2';
 
 const FormSignUp=()=> {
     const { register, handleSubmit } = useForm();
-    const onSubmit = data =>{        
-        axios.post('/signup', data).then(
+    const onSubmit = data =>{    
+        axios.post('/send-email', data).then(
             (res)=>{
-                if(res.data['message']=="Usuario registrado"){
+                if(res.state===0){
                     swal.fire({
-                        title: "Registro completado con éxito",
-                        text: "Ahora podrá iniciar sesión",
-                        icon: "success",
-                        confirmButtonText: "<a href='/login'>¡Entendido!</a>",
+                        title: "Su correo no es válido",
+                        text: "Asegurese de ingresar bien su correo o crear uno nuevo",
+                        icon: "error",
+                        confirmButtonText: "¡Entendido!",
                         confirmButtonColor: "#f96332",
                     });
-                } 
+                }else{
+                    axios.post('/signup', data).then(
+                        (res)=>{
+                            if(res.data['message']=="Usuario registrado"){
+                                swal.fire({
+                                    title: "Registro completado con éxito",
+                                    text: "Ahora podrá iniciar sesión",
+                                    icon: "success",
+                                    confirmButtonText: "<a href='/login'>¡Entendido!</a>",
+                                    confirmButtonColor: "#f96332",
+                                }); 
+                            } 
+                        }
+                    )
+                }
             }
-        )
+        )    
     }
         
     return (
