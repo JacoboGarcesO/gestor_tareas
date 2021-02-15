@@ -32,6 +32,9 @@
     width: 85px;
     margin: 5px;
 }
+.btn_logout{
+    box-shadow: 0 5px 8px 0 rgba(175, 44, 44, 0.822), 0 6px 20px 0 rgba(173, 22, 22, 0.459);
+}
 .content_home_1{
     padding-bottom: 237px;
 }
@@ -48,6 +51,12 @@
     height: 55px;
     line-height: 55px;
     text-align:center;
-    box-shadow: opx 1px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 5px 8px 0 rgba(85, 175, 44, 0.76), 0 6px 20px 0 rgba(57, 173, 22, 0.678);
+}
+.btn_save{
+    box-shadow: 0 5px 8px 0 rgba(85, 175, 44, 0.76), 0 6px 20px 0 rgba(57, 173, 22, 0.678);
+}
+.modal{
+    background-color: rgba(107, 84, 97, 0.61);
 }
 

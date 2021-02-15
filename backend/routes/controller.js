@@ -13,6 +13,14 @@ let transporter = nodemailer.createTransport(smtpTransport({
 ));
 
 module.exports = {
+    getTasks:async(req, res)=>{
+        try {
+            const {user}=req.body;
+            const tarea=await tareas.find({user:user}).sort({prioridad:1});
+            res.json(tarea);
+        } catch (e) { res.json({ message: "Error inesperado", error: e }) }
+       
+    },
     registerTask:async (req, res)=>{
         try {
             const { nombre_tarea, prioridad, fecha_vencimiento, user } = req.body;

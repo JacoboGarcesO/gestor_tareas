@@ -49,7 +49,7 @@ const RegisterTasks = () => {
   };
   return (
     <>
-      <Button className="btn_edit circulo_prueba" variant="success" onClick={handleShow}>
+      <Button className="circulo_prueba" variant="success" onClick={handleShow}>
         +
       </Button>
       <Modal 
@@ -57,22 +57,22 @@ const RegisterTasks = () => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
       show={show} onHide={handleClose}
-      className="">
-        <Modal.Header closeButton>
+      className="modal">
+        <Modal.Header closeButton className="bg-secondary text-white">
           <Modal.Title className="letter_tittle">Add task</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="letter_table">
+        <Modal.Body className="letter_table bg-secondary text-white">
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
                 <label htmlFor="nombre" className="form-label">Task name</label>
-                <input required ref={register} type="text" name="nombre_tarea" className="form-control" id="nombre" aria-describedby="emailHelp"/>
+                <input required ref={register} type="text" name="nombre_tarea" className="text-white bg-secondary form-control" id="nombre" aria-describedby="emailHelp"/>
             </div>
             <div className="mb-3">
                 <label htmlFor="fecha" className="form-label">Expiration</label>
-                <input required ref={register} type="date" name="fecha_vencimiento" className="form-control" id="fecha"/>
+                <input required ref={register} type="date" name="fecha_vencimiento" className="text-white bg-secondary form-control" id="fecha"/>
             </div>
             <div className="mb-3">
-              <select ref={register} required className="form-select" name="prioridad" aria-label="Default select example">
+              <select ref={register} required className="bg-secondary text-white form-select" name="prioridad" aria-label="Default select example">
                 <option>Priority</option>
                 <option>1</option>
                 <option>2</option>
@@ -80,7 +80,10 @@ const RegisterTasks = () => {
               </select>
             </div>
             <Modal.Footer className="letter mx-auto">
-                <Button type="submit" variant="primary">
+                <Button onClick={handleClose} type="submit" className="btn_logout" variant="danger">
+                    Cancel
+                </Button>
+                <Button type="submit" className="btn_save" variant="success">
                     Add
                 </Button>
             </Modal.Footer>

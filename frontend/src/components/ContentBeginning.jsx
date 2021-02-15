@@ -1,13 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles/styles.css';
 import {Card} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import EditTasks from './EditTasks';
 import RegisterTasks from './RegisterTasks';
-import {getFromLocal} from '../functions/LocalStorage';
-
+import {getFromLocal, removeFromLocal} from '../functions/LocalStorage';
+import axios from '../axios/axios';
 
 const ContentBeginning=()=>{
+  const limpiarLocal=()=>{
+    removeFromLocal('nombre');
+    removeFromLocal('id');
+  }
+  const [task, setTask]=useState([]);
   const nombre=getFromLocal('nombre');
+  const id=getFromLocal('id');
+  const getTasks =()=>{
+    axios.post('/get-tasks',{"user":id}).then(
+      (res)=>{
+        setTask(res.data);
+      }
+    )
+  }
+  useEffect(() => {
+    getTasks();
+  }, []);
+
+  const transformer=(data)=>{
+    const fecha=data.split("T");
+    return fecha[0];
+  }
     return(
         <div>
           <div className="container d-flex my-5">
@@ -25,15 +47,19 @@ const ContentBeginning=()=>{
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Bañar el perro</td>
-                <td>1</td>
-                <td>2/02/2021</td>
-                <td><EditTasks/></td>
-                <td><button className='btn btn_delete btn-danger'>Delete</button></td>
+              {task.map((item)=>(
+                <tr key={item._id}>
+                  <td>{item.nombre_tarea}</td>
+                  <td>{item.prioridad}</td>
+                  <td>{transformer(item.fecha_vencimiento)}</td>
+                  <td><EditTasks/></td>
+                  <td><button className='btn btn_delete btn-danger'>Delete</button></td>
               </tr>
+              ))}
+              
             </tbody>
           </table>
+          <Link onClick={limpiarLocal} className="mx-auto" to="/"><button className='btn btn_logout btn-danger'>Log out</button></Link>
           </Card>
           <div>
             <RegisterTasks/>
