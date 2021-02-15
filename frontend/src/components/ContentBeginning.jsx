@@ -10,7 +10,7 @@ import swal from 'sweetalert2';
 
 const ContentBeginning = () => {
   const vencimiento=(dias)=>{
-    if(dias==0){
+    if(dias<=0){
       return 'Expired';
     }else{
       return 'Is not expired';
