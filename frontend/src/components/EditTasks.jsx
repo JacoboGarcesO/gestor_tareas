@@ -1,15 +1,49 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import { useForm } from "react-hook-form";
-import {getFromLocal} from '../functions/LocalStorage';
+import swal from 'sweetalert2';
+import axios from '../axios/axios';
 
-const EditTasks = () => {
-  const id=getFromLocal('id');
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const { register, handleSubmit } = useForm();
-  const onSubmit = data =>{console.log(data)};
+const EditTasks = (data_tarea) => {
+    const nombre_tarea=data_tarea['data_tarea']['nombre_tarea'];
+    const fecha_vencimiento=data_tarea['data_tarea']['fecha_vencimiento'];
+    const prioridad=data_tarea['data_tarea']['prioridad'];
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const { register, handleSubmit } = useForm();
+    const onSubmit = data =>{
+    if(data['prioridad']!=='Priority'){
+      axios.post(`/update-tasks/${data_tarea['data_tarea']['id_tarea']}`, data).then(
+          (res)=>{
+              if(res.data['message']=='Tarea actualizada'){
+                swal.fire({
+                  title: "Edited task",
+                  icon: "success",
+                  confirmButtonText: "¡Ok!",
+                  confirmButtonColor: "#f96332",
+                });
+                handleClose();
+              }else{
+                swal.fire({
+                  title: "The task could not be edited",
+                  icon: "error",
+                  confirmButtonText: "¡Ok!",
+                  confirmButtonColor: "#f96332",
+                });
+              }
+          }
+       )
+    }else{
+      swal.fire({
+        title: "Select a valid priority",
+        icon: "error",
+        confirmButtonText: "¡Ok!",
+        confirmButtonColor: "#f96332",
+      });
+    }
+    
+  };
 
   return (
     <>
@@ -29,14 +63,14 @@ const EditTasks = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
                 <label htmlFor="nombre" className="form-label">Task name</label>
-                <input required ref={register} type="text" name="nombre_tarea" className="text-white bg-secondary form-control" id="nombre" aria-describedby="emailHelp"/>
+                <input ref={register} type="text" name="nombre_tarea" className="text-white bg-secondary form-control" id="nombre" defaultValue={nombre_tarea} aria-describedby="emailHelp"/>
             </div>
             <div className="mb-3">
                 <label htmlFor="fecha" className="form-label">Expiration</label>
-                <input required ref={register} type="date" name="fecha_vencimiento" className="text-white bg-secondary form-control" id="fecha"/>
+                <input ref={register} type="date" name="fecha_vencimiento" defaultValue={fecha_vencimiento} className="text-white bg-secondary form-control" id="fecha"/>
             </div>
             <div className="mb-3">
-              <select ref={register} required className="bg-secondary text-white form-select" name="prioridad" aria-label="Default select example">
+              <select ref={register} className="bg-secondary text-white form-select" name="prioridad" defaultValue={prioridad} aria-label="Default select example">
                 <option>Priority</option>
                 <option>1</option>
                 <option>2</option>

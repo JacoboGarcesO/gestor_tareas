@@ -13,6 +13,16 @@ let transporter = nodemailer.createTransport(smtpTransport({
 ));
 
 module.exports = {
+    updateTasks:async(req, res)=>{
+        const {id_tarea}=req.params;
+        const tarea=await tareas.findByIdAndUpdate(id_tarea,{$set:req.body}, (err, resultado)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.json({message:'Tarea actualizada'});
+            }
+        });
+    },
     getTasks:async(req, res)=>{
         try {
             const {user}=req.body;

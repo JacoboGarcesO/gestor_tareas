@@ -52,7 +52,14 @@ const ContentBeginning=()=>{
                   <td>{item.nombre_tarea}</td>
                   <td>{item.prioridad}</td>
                   <td>{transformer(item.fecha_vencimiento)}</td>
-                  <td><EditTasks/></td>
+                  <td><EditTasks data_tarea={
+                    {
+                      "id_tarea":item._id, 
+                      "nombre_tarea":item.nombre_tarea,
+                      "prioridad":item.prioridad,
+                      "fecha_vencimiento":transformer(item.fecha_vencimiento)
+                    }
+                    } /></td>
                   <td><button className='btn btn_delete btn-danger'>Delete</button></td>
               </tr>
               ))}
