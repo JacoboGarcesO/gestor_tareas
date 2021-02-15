@@ -69,7 +69,8 @@ const ContentBeginning = () => {
                       showCancelButton: true,
                       cancelButtonText:"Cancel",
                       confirmButtonText: "¡Ok!",
-                      confirmButtonColor: "#f96332",
+                      confirmButtonColor: "#7FFF00",
+                      cancelButtonColor: "#FF0000",
                     }).then((result)=>{
                       if(result.isConfirmed){
                         axios.delete(`/delete-tasks/${item._id}`).then(
@@ -79,7 +80,7 @@ const ContentBeginning = () => {
                                 title: "Deleted task",
                                 icon: "success",
                                 confirmButtonText: "¡Ok!",
-                                confirmButtonColor: "#f96332",
+                                confirmButtonColor: "#7FFF00",
                               }).then((result)=>{
                                 if (result.isConfirmed) {
                                   window.location.reload();
@@ -90,7 +91,7 @@ const ContentBeginning = () => {
                                 title: "The task could not be deleted",
                                 icon: "error",
                                 confirmButtonText: "¡Ok!",
-                                confirmButtonColor: "#f96332",
+                                confirmButtonColor: "#7FFF00",
                               });
                             window.location.reload();
                           }

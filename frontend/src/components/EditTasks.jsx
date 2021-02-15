@@ -21,7 +21,8 @@ const EditTasks = (data_tarea) => {
         showCancelButton: true,
         cancelButtonText:"Cancel",
         confirmButtonText: "¡Ok!",
-        confirmButtonColor: "#f96332",
+        confirmButtonColor: "#7FFF00",
+        cancelButtonColor: "#FF0000",
       }).then((result) => {
         if (result.isConfirmed) {
             axios.post(`/update-tasks/${data_tarea['data_tarea']['id_tarea']}`, data).then(
@@ -31,7 +32,7 @@ const EditTasks = (data_tarea) => {
                       title: "Edited task",
                       icon: "success",
                       confirmButtonText: "¡Ok!",
-                      confirmButtonColor: "#f96332",
+                      confirmButtonColor: "#7FFF00",
                     }).then((result)=>{
                       if (result.isConfirmed) {
                         window.location.reload();
@@ -42,13 +43,11 @@ const EditTasks = (data_tarea) => {
                       title: "The task could not be edited",
                       icon: "error",
                       confirmButtonText: "¡Ok!",
-                      confirmButtonColor: "#f96332",
+                      confirmButtonColor: "#7FFF00",
                     });
                   }
               }
           )
-        } else if (result.isDenied) {
-          swal.fire('Changes are not saved', '', 'info')
         }
       })
       
@@ -57,7 +56,7 @@ const EditTasks = (data_tarea) => {
         title: "Select a valid priority",
         icon: "error",
         confirmButtonText: "¡Ok!",
-        confirmButtonColor: "#f96332",
+        confirmButtonColor: "#7FFF00",
       });
     }
     

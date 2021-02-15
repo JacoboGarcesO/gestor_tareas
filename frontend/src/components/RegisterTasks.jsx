@@ -20,7 +20,8 @@ const RegisterTasks = () => {
         showCancelButton: true,
         cancelButtonText: "Cancel",
         confirmButtonText: "¡Ok!",
-        confirmButtonColor: "#f96332",
+        confirmButtonColor: "#7FFF00",
+        cancelButtonColor: "#FF0000",
       }).then((result) => {
         if (result.isConfirmed) {
           axios.post('/tasks', {
@@ -35,7 +36,7 @@ const RegisterTasks = () => {
                   title: "Added task",
                   icon: "success",
                   confirmButtonText: "¡Ok!",
-                  confirmButtonColor: "#f96332",
+                  confirmButtonColor: "#7FFF00",
                 }).then((result) => {
                   if (result.isConfirmed) {
                     window.location.reload();
@@ -46,7 +47,7 @@ const RegisterTasks = () => {
                   title: "The task could not be added",
                   icon: "error",
                   confirmButtonText: "¡Ok!",
-                  confirmButtonColor: "#f96332",
+                  confirmButtonColor: "#7FFF00",
                 });
               }
             })
@@ -58,7 +59,7 @@ const RegisterTasks = () => {
         title: "Select a valid priority",
         icon: "error",
         confirmButtonText: "¡Ok!",
-        confirmButtonColor: "#f96332",
+        confirmButtonColor: "#7FFF00",
       });
     }
   };

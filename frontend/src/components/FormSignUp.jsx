@@ -73,8 +73,11 @@ const FormSignUp=()=> {
                     </div>
                     <div className="text-center text-white letter pb-2">
                         <button type="submit" className="btn btn-secondary">Sign up</button>        
+                    </div>
+                    <div className="text-center text-white letter pb-2">
                         <Link to="/"><button className="btn btn_delete btn-danger">Cancel</button></Link>
                     </div>
+
                 </form> 
             </Card>
         </div>
