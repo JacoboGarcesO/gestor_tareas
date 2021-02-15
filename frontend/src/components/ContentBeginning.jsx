@@ -9,6 +9,27 @@ import axios from '../axios/axios';
 import swal from 'sweetalert2';
 
 const ContentBeginning = () => {
+  const vencimiento=(dias)=>{
+    if(dias==0){
+      return 'Expired';
+    }else{
+      return 'Is not expired';
+    }
+  }
+  const validator_days=fecha=>{
+    //Tomar milisegundos de la fecha ingresada
+    let fecha_fin=new Date(fecha).getTime();
+    //definir la fecha actual y sus milisegundos
+    const now=new Date;
+    const day=now.getDate();
+    const month=(now.getMonth()+1);
+    const year=now.getFullYear();
+    let fecha_actual=`${year}-${month}-${day}`;
+    fecha_actual=new Date(fecha_actual).getTime();
+    //operación para calcular los días que faltan
+    let diff=fecha_fin-fecha_actual;
+    return Math.round(diff/(1000*60*60*24));
+  }
   const limpiarLocal = () => {
     removeFromLocal('nombre');
     removeFromLocal('id');
@@ -36,13 +57,14 @@ const ContentBeginning = () => {
       <div className="container d-flex my-5">
         <h4 className='letter_tittle mt-2 text-white mx-auto'>Tasks for {nombre}</h4>
       </div>
-      <Card className='mx-auto my-5 p-4 text-white bg-secondary letter_table' style={{ width: '50rem' }}>
+      <Card className='mx-auto my-5 p-4 text-white bg-secondary letter_table' style={{ width: '65rem' }}>
         <table className="table table-dark table-striped my-4">
           <thead>
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Priority</th>
-              <th scope="col">Expiration</th>
+              <th scope="col">Expiration date</th>
+              <th scope="col">Expired?</th>
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
             </tr>
@@ -53,6 +75,7 @@ const ContentBeginning = () => {
                 <td>{item.nombre_tarea}</td>
                 <td>{item.prioridad}</td>
                 <td>{transformer(item.fecha_vencimiento)}</td>
+                <td>{vencimiento(validator_days(transformer(item.fecha_vencimiento)))}</td>
                 <td><EditTasks data_tarea={
                   {
                     "id_tarea": item._id,
