@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
-const usuarios = require('../models/usuario');
+const Usuarios = require('../models/usuario');
 const smtpTransport = require('nodemailer-smtp-transport');
+const tareas = require('../models/tarea');
 
 let transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
@@ -12,10 +13,18 @@ let transporter = nodemailer.createTransport(smtpTransport({
 ));
 
 module.exports = {
+    registerTask:async (req, res)=>{
+        try {
+            const { nombre_tarea, prioridad, fecha_vencimiento, user } = req.body;
+            const tarea = await new tareas({ nombre_tarea, prioridad, fecha_vencimiento, user});
+            tarea.save();
+            res.json({ message: "Tarea registrada" });
+        } catch (e) { res.json({ message: "Error inesperado", error: e }) }
+    },
     login: async (req, res) => {
         try {
             const { correo, contrasena } = req.body;
-            const usuario = await usuarios.find({ correo: correo, contrasena: contrasena }, function (err, info) {
+            const usuario = await Usuarios.find({ correo: correo, contrasena: contrasena }, function (err, info) {
                 if (err) {
                     console.log(err);
                 } else {
@@ -27,7 +36,7 @@ module.exports = {
     register: async (req, res) => {
         try {
             const { nombre, apellidos, correo, contrasena } = req.body;
-            const usuario = await new usuarios({ nombre, apellidos, correo, contrasena });
+            const usuario = await new Usuarios({ nombre, apellidos, correo, contrasena });
             usuario.save();
             res.json({ message: "Usuario registrado" });
         } catch (e) { res.json({ message: "Error inesperado", error: e }) }

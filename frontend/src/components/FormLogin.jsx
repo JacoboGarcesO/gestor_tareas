@@ -26,7 +26,9 @@ const FormLogin=()=> {
                     });
                 }else{
                     const id = res.data[0]["_id"];
+                    const nombre = res.data[0]["nombre"];
                     saveToLocal("id", id);
+                    saveToLocal("nombre", nombre);
                     window.location.href="/tasks";
                 } 
             }

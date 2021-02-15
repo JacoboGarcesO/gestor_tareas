@@ -17,10 +17,10 @@ const FormSignUp=()=> {
             (res)=>{
                 if(res.state===0){
                     swal.fire({
-                        title: "Su correo no es válido",
-                        text: "Asegurese de ingresar bien su correo o crear uno nuevo",
+                        title: "Invalid mail",
+                        text: "Make sure you enter your mail or create a new one",
                         icon: "error",
-                        confirmButtonText: "¡Entendido!",
+                        confirmButtonText: "¡Ok!",
                         confirmButtonColor: "#f96332",
                     });
                 }else{
@@ -33,10 +33,10 @@ const FormSignUp=()=> {
                         (res)=>{
                             if(res.data['message']=="Usuario registrado"){
                                 swal.fire({
-                                    title: "Registro completado con éxito",
-                                    text: "Ahora podrá iniciar sesión",
+                                    title: "Successfully completed registration",
+                                    text: "You can now log in",
                                     icon: "success",
-                                    confirmButtonText: "<a href='/login'>¡Entendido!</a>",
+                                    confirmButtonText: "<a href='/login'>¡Ok!</a>",
                                     confirmButtonColor: "#f96332",
                                 }); 
                             } 
