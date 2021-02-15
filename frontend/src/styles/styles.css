@@ -19,21 +19,21 @@
     padding: 2em;
 }
 .btn{
-    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.199), 0 6px 20px 0 rgba(221, 209, 209, 0.26);
+    box-shadow: 0 3px 5px 0 rgb(0, 0, 0), 0 6px 20px 0 #fffdfd;
     width: 200px;
 }
 .btn_edit{
-    box-shadow: 0 5px 8px 0 rgba(44, 101, 175, 0.534), 0 6px 20px 0 rgba(24, 22, 173, 0.459);
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.514), 0 6px 20px 0 rgb(24, 22, 173);
     width: 77px;
     margin: 5px;
 }
 .btn_delete{
-    box-shadow: 0 5px 8px 0 rgba(175, 44, 44, 0.822), 0 6px 20px 0 rgba(173, 22, 22, 0.459);
-    width: 85px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.363), 0 6px 20px 0 rgb(173, 22, 22);
+    width: 97px;
     margin: 5px;
 }
 .btn_logout{
-    box-shadow: 0 5px 8px 0 rgba(175, 44, 44, 0.822), 0 6px 20px 0 rgba(173, 22, 22, 0.459);
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.363), 0 6px 20px 0 rgb(173, 22, 22);
 }
 .content_home_1{
     padding-bottom: 237px;
@@ -51,10 +51,10 @@
     height: 55px;
     line-height: 55px;
     text-align:center;
-    box-shadow: 0 5px 8px 0 rgba(85, 175, 44, 0.76), 0 6px 20px 0 rgba(57, 173, 22, 0.678);
+    box-shadow: 0 5px 8px 0 rgba(17, 17, 17, 0.76), 0 6px 20px 0 rgb(56, 155, 26);
 }
 .btn_save{
-    box-shadow: 0 5px 8px 0 rgba(85, 175, 44, 0.76), 0 6px 20px 0 rgba(57, 173, 22, 0.678);
+    box-shadow: 0 5px 8px 0 rgba(17, 17, 17, 0.74), 0 6px 20px 0 rgb(56, 155, 26);
 }
 .modal{
     background-color: rgba(107, 84, 97, 0.61);

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/styles.css';
 import {Card} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import axios from '../axios/axios';
 import swal from 'sweetalert2';
@@ -71,7 +72,8 @@ const FormSignUp=()=> {
                         <input required ref={register} type="password" className="text-white bg-secondary letter form-control" name="contrasena"/>
                     </div>
                     <div className="text-center text-white letter pb-2">
-                        <button type="submit" className="btn btn-secondary">Sign up</button>    
+                        <button type="submit" className="btn btn-secondary">Sign up</button>        
+                        <Link to="/"><button className="btn btn_delete btn-danger">Cancel</button></Link>
                     </div>
                 </form> 
             </Card>

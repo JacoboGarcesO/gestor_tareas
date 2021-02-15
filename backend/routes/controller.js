@@ -13,15 +13,29 @@ let transporter = nodemailer.createTransport(smtpTransport({
 ));
 
 module.exports = {
+    deleteTask:async(req, res)=>{
+        try{
+            const {id_tarea}=req.params;
+            const tarea=await tareas.findByIdAndDelete(id_tarea, (err, resultado)=>{
+                if(err){
+                    console.log(err);
+                }else{
+                    res.json({message:'Tarea eliminada'});
+                }
+            });
+        }catch(e) { res.json({ message: "Error inesperado", error: e }) }
+    },
     updateTasks:async(req, res)=>{
-        const {id_tarea}=req.params;
-        const tarea=await tareas.findByIdAndUpdate(id_tarea,{$set:req.body}, (err, resultado)=>{
-            if(err){
-                console.log(err);
-            }else{
-                res.json({message:'Tarea actualizada'});
-            }
-        });
+        try{
+            const {id_tarea}=req.params;
+            const tarea=await tareas.findByIdAndUpdate(id_tarea,{$set:req.body}, (err, resultado)=>{
+                if(err){
+                    console.log(err);
+                }else{
+                    res.json({message:'Tarea actualizada'});
+                }
+            });
+        }catch(e) { res.json({ message: "Error inesperado", error: e })}
     },
     getTasks:async(req, res)=>{
         try {
@@ -29,7 +43,6 @@ module.exports = {
             const tarea=await tareas.find({user:user}).sort({prioridad:1});
             res.json(tarea);
         } catch (e) { res.json({ message: "Error inesperado", error: e }) }
-       
     },
     registerTask:async (req, res)=>{
         try {

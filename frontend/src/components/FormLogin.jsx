@@ -56,6 +56,7 @@ const FormLogin=()=> {
                     </div>
                     <div className="text-center text-white letter pb-2">
                         <button type="submit" className="btn btn-secondary">Sign in</button>    
+                        <Link to="/"><button className="btn btn_delete btn-danger">Cancel</button></Link>
                     </div>
                 </form> 
             </Card>

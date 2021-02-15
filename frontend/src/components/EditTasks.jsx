@@ -14,26 +14,44 @@ const EditTasks = (data_tarea) => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data =>{
     if(data['prioridad']!=='Priority'){
-      axios.post(`/update-tasks/${data_tarea['data_tarea']['id_tarea']}`, data).then(
-          (res)=>{
-              if(res.data['message']=='Tarea actualizada'){
-                swal.fire({
-                  title: "Edited task",
-                  icon: "success",
-                  confirmButtonText: "¡Ok!",
-                  confirmButtonColor: "#f96332",
-                });
-                handleClose();
-              }else{
-                swal.fire({
-                  title: "The task could not be edited",
-                  icon: "error",
-                  confirmButtonText: "¡Ok!",
-                  confirmButtonColor: "#f96332",
-                });
+      swal.fire({
+        title: "Now you’ll edit the task",
+        text:" You sure?",
+        icon: "info",
+        showCancelButton: true,
+        cancelButtonText:"Cancel",
+        confirmButtonText: "¡Ok!",
+        confirmButtonColor: "#f96332",
+      }).then((result) => {
+        if (result.isConfirmed) {
+            axios.post(`/update-tasks/${data_tarea['data_tarea']['id_tarea']}`, data).then(
+              (res)=>{
+                  if(res.data['message']=='Tarea actualizada'){
+                    swal.fire({
+                      title: "Edited task",
+                      icon: "success",
+                      confirmButtonText: "¡Ok!",
+                      confirmButtonColor: "#f96332",
+                    }).then((result)=>{
+                      if (result.isConfirmed) {
+                        window.location.reload();
+                      }
+                    })
+                  }else{
+                    swal.fire({
+                      title: "The task could not be edited",
+                      icon: "error",
+                      confirmButtonText: "¡Ok!",
+                      confirmButtonColor: "#f96332",
+                    });
+                  }
               }
-          }
-       )
+          )
+        } else if (result.isDenied) {
+          swal.fire('Changes are not saved', '', 'info')
+        }
+      })
+      
     }else{
       swal.fire({
         title: "Select a valid priority",
@@ -78,7 +96,7 @@ const EditTasks = (data_tarea) => {
               </select>
             </div>
             <Modal.Footer className="letter mx-auto">
-                <Button onClick={handleClose} type="submit" className="btn_logout" variant="danger">
+                <Button onClick={handleClose} className="btn_logout" variant="danger">
                     Cancel
                 </Button>
                 <Button type="submit" className="btn_save" variant="success">
