@@ -8,7 +8,7 @@ let transporter = nodemailer.createTransport(smtpTransport({
     host: 'smtp.gmail.com',
     auth: {
         user: 'jacobogarcesoquendo@gmail.com',
-        pass: ''
+        pass: 'No miren mi contraseña'
     }}
 ));
 
@@ -35,7 +35,7 @@ module.exports = {
                     res.json({message:'Tarea actualizada'});
                 }
             });
-        }catch(e) { res.json({ message: "Error inesperado", error: e })}
+        } catch(e) { res.json({ message: "Error inesperado", error: e })}
     },
     getTasks:async(req, res)=>{
         try {

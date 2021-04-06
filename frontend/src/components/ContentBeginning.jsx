@@ -46,6 +46,7 @@ const ContentBeginning = () => {
   }
   useEffect(() => {
     getTasks();
+    console.log("Me ejecuté")
   }, []);
 
   const transformer = (data) => {

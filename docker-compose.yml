@@ -1,0 +1,19 @@
+version: "3"
+
+services: 
+    frontend-todo:
+        image: frontend-todo
+        stdin_open: true
+        ports: 
+            - "3000:3000"
+        networks: 
+            - mern-app
+    backend-todo:
+        image: backend-todo
+        ports: 
+            - "7007:7007"
+        networks: 
+            - mern-app
+networks: 
+    mern-app: 
+        driver: bridge
