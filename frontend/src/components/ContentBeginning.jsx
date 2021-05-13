@@ -9,26 +9,26 @@ import axios from '../axios/axios';
 import swal from 'sweetalert2';
 
 const ContentBeginning = () => {
-  const vencimiento=(dias)=>{
-    if(dias<=0){
+  const vencimiento = (dias) => {
+    if (dias <= 0) {
       return 'Expired';
-    }else{
+    } else {
       return 'Is not expired';
     }
   }
-  const validator_days=fecha=>{
+  const validator_days = fecha => {
     //Tomar milisegundos de la fecha ingresada
-    let fecha_fin=new Date(fecha).getTime();
+    let fecha_fin = new Date(fecha).getTime();
     //definir la fecha actual y sus milisegundos
-    const now=new Date;
-    const day=now.getDate();
-    const month=(now.getMonth()+1);
-    const year=now.getFullYear();
-    let fecha_actual=`${year}-${month}-${day}`;
-    fecha_actual=new Date(fecha_actual).getTime();
+    const now = new Date;
+    const day = now.getDate();
+    const month = (now.getMonth() + 1);
+    const year = now.getFullYear();
+    let fecha_actual = `${year}-${month}-${day}`;
+    fecha_actual = new Date(fecha_actual).getTime();
     //operación para calcular los días que faltan
-    let diff=fecha_fin-fecha_actual;
-    return Math.round(diff/(1000*60*60*24));
+    let diff = fecha_fin - fecha_actual;
+    return Math.round(diff / (1000 * 60 * 60 * 24));
   }
   const limpiarLocal = () => {
     removeFromLocal('nombre');
@@ -88,43 +88,43 @@ const ContentBeginning = () => {
                   }
                 } /></td>
                 <td><button onClick={() => {
-                    swal.fire({
-                      title: "Now you’ll delete the task",
-                      text:" You sure?",
-                      icon: "info",
-                      showCancelButton: true,
-                      cancelButtonText:"Cancel",
-                      confirmButtonText: "¡Ok!",
-                      confirmButtonColor: "#7FFF00",
-                      cancelButtonColor: "#FF0000",
-                    }).then((result)=>{
-                      if(result.isConfirmed){
-                        axios.delete(`/delete-tasks/${item._id}`).then(
-                          (res) => {
-                            if(res.data['message']=='Tarea eliminada'){
-                              swal.fire({
-                                title: "Deleted task",
-                                icon: "success",
-                                confirmButtonText: "¡Ok!",
-                                confirmButtonColor: "#7FFF00",
-                              }).then((result)=>{
-                                if (result.isConfirmed) {
-                                  window.location.reload();
-                                }
-                              })
-                            }else{
-                              swal.fire({
-                                title: "The task could not be deleted",
-                                icon: "error",
-                                confirmButtonText: "¡Ok!",
-                                confirmButtonColor: "#7FFF00",
-                              });
+                  swal.fire({
+                    title: "Now you’ll delete the task",
+                    text: " You sure?",
+                    icon: "info",
+                    showCancelButton: true,
+                    cancelButtonText: "Cancel",
+                    confirmButtonText: "¡Ok!",
+                    confirmButtonColor: "#7FFF00",
+                    cancelButtonColor: "#FF0000",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      axios.delete(`/delete-tasks/${item._id}`).then(
+                        (res) => {
+                          if (res.data['message'] == 'Tarea eliminada') {
+                            swal.fire({
+                              title: "Deleted task",
+                              icon: "success",
+                              confirmButtonText: "¡Ok!",
+                              confirmButtonColor: "#7FFF00",
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                window.location.reload();
+                              }
+                            })
+                          } else {
+                            swal.fire({
+                              title: "The task could not be deleted",
+                              icon: "error",
+                              confirmButtonText: "¡Ok!",
+                              confirmButtonColor: "#7FFF00",
+                            });
                             window.location.reload();
                           }
                         })
-                      }
-                    })
-              }} className='btn btn_delete btn-danger'>Delete</button></td>
+                    }
+                  })
+                }} className='btn btn_delete btn-danger'>Delete</button></td>
               </tr>
             ))}
 
